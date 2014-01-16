@@ -1,0 +1,361 @@
+/*
+* Skin for jPlayer Plugin (jQuery JavaScript Library)
+* http://www.happyworm.com/jquery/jplayer
+*
+* Skin Name: SwiftPSD v2
+*
+* Copyright (c) 2012 SwiftPSD / Ed Cousins
+* Dual licensed under the MIT and GPL licenses.
+*  - http://www.opensource.org/licenses/mit-license.php
+*  - http://www.gnu.org/copyleft/gpl.html
+*
+* Author: Ed Cousins for SwiftPSD.com
+* Skin Version: 1.0 (jPlayer 2.1.0)
+* Date: 5th January 2012
+*/
+
+/* MAIN INTERFACE */
+.mp-jplayer-container{
+	display:inline-block;
+	width:100%;	
+}
+div.jp-interface {
+ 	width: 100%;
+ 	height: auto;
+ 	position: relative;
+	background-color:#000000;
+	overflow:hidden;
+}
+.jp-title {
+	width: 100%;
+	margin: 0 auto 10px;
+	clear: both;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+.jp-title .cover-art {
+	float: left;
+	margin-right: 10px;
+	height: 80px;
+	width: 80px;
+	position: relative;
+	border: 1px solid rgba( 0, 0, 0, 0.3);
+}
+.cover-art img {
+	width: 80px;
+	height: 80px;
+}
+.jp-title ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: auto;
+	max-width: 340px;
+}
+.jp-title ul li {
+	margin-bottom: 0;
+}
+.jp-title ul .title {
+	color: #111;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 20px;
+	margin: 0 0 2px;
+}
+.jp-title ul .artist {
+	color: #111;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 20px;
+	margin: 0 0 2px;
+}
+.jp-time-holder {
+	color: #111;
+	font-size: 14px;
+	line-height: 13px;
+	position: absolute;
+	left: 91px;
+	bottom: 0;
+}
+
+/* CONTROLS */
+
+div.jp-interface .jp-controls-holder {
+	overflow: hidden;
+	display:table-row;
+	vertical-align: middle;
+	height: 40px;
+}
+div.jp-interface ul.jp-controls {
+	display: table-cell;
+	vertical-align:middle;
+	width: 1px;
+	list-style: none;
+	padding: 0px 5px 0px 15px;
+	margin: 0;
+	height: auto;
+	overflow: hidden;
+}
+div.jp-interface ul.jp-controls li {
+	display: table-cell;
+	vertical-align:middle;
+	margin-bottom: 0;
+}
+div.jp-interface ul.jp-controls li a{
+	padding-right:10px;
+}
+.jp-repeat, .jp-repeat-off{
+	margin-top: -2px;	
+}
+div.jp-interface ul.jp-controls a, div.jp-interface ul.jp-toggles a {
+	display: block;
+	overflow: hidden;
+	text-decoration: none;
+	font-size: 18px;
+}
+div.jp-video-play{
+	margin: -133px 0 0 48%;
+	font-size:30px;
+	position:absolute;
+}
+.jp-video-play-icon{
+	display:block;
+}
+.jp-video-play-icon:hover{
+	text-decoration:none;
+	color:#878787;	
+}
+a.jp-play, a.jp-pause{	
+}
+a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
+	display:none!important;
+}
+.jp-controls a:hover, .jp-toggles a:hover, a.loop-off, .jp-controls a.shuffle-off, .jp-controls a.jp-repeat-off{
+	color:#878787;
+}
+.jp-gui{
+	position:relative;	
+}
+.jp-gui a, .jp-playlist a{
+	color:#DFDFDF;
+	font-size:15px;
+}	
+/* PLAYLIST */
+
+.jp-playlist ul{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	list-style-type:none;
+	background:rgb(31, 31, 31);
+}
+
+.jp-playlist ul li{
+	padding: 10px 0px 15px 10px;
+	height:12px;	
+}
+.jp-playlist ul li:hover{
+	background:	#878787;
+}
+.jp-free-media{
+	float:right;
+	margin-right:10px;
+}
+/* PROGRESS BAR */
+
+div.jp-progress {
+	overflow:hidden;
+   	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+div.jp-volume-bar {
+	top: 15px;
+	height: 6px;
+	right: 60px;
+	width: 82px;
+}
+div.jp-audio div.jp-type-single div.jp-progress {
+	width:164px;
+}
+div.jp-seek-bar {
+	background: #333;
+	width:0px;
+	height:10px;
+	cursor: pointer;
+   	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+div.jp-play-bar {
+	width:0px;
+	height:100%;
+   	-webkit-border-radius: 10px 0 0 10px;
+	-moz-border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 0 10px;
+	background: #878787;
+}
+
+/* VOLUME CONTROLS */
+
+div.jp-video a.jp-mute,
+div.jp-video a.jp-unmute {
+	display: none;
+}
+div.jp-volume-bar {
+	display:table-cell;
+	vertical-align:middle;
+	overflow:hidden;
+	cursor: pointer;
+   	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding-right:15px;
+}
+.jp-volume-bar-bg{
+	background: #333;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;	
+}
+div.jp-volume-bar-value {
+	width:0px;
+	height:10px;
+	-webkit-border-radius: 10px 0 0 10px;
+	-moz-border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 0 10px;
+	background: #878787;
+}
+
+/* VIDEO PLAYER */
+
+div.jp-video-full div.jp-jplayer {
+	top: 0;
+	left: 0;
+	position: fixed !important;
+	position: relative;
+	overflow: hidden;
+	z-index: 1000;
+}
+div.jp-video-full div.jp-gui {
+	position: fixed !important;
+	position: static;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+}
+div.jp-video-full div.jp-jplayer img {
+	height: 100%!important;
+}
+div.jp-video-full div.jp-interface {
+	position: absolute !important;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+}
+div.jp-video-full .interface-wrap {
+	width: 640px;
+	margin: 0 auto;
+	position: relative;
+}
+div.jp-video .jp-jplayer, .jp-jplayer video{
+	width:  100%!important;
+	background: #000;
+}
+div.jp-video div.jp-interface {
+	display:table;
+	width: 100%;
+	margin: 0;
+}
+div.jp-video .jp-progress {
+	display: table-cell;
+	vertical-align: middle;
+	padding-right: 15px;
+}
+div.jp-video .jp-progress .jp-progress-placeholder{
+	width: 100%;
+	position: absolute;
+	z-index: -100;
+	height: 10px;
+}
+div.jp-video.jp-video-530p .jp-progress {
+	width: 724px;
+}
+div.jp-video .jp-current-time, .jp-video .jp-duration {
+	display: none;
+}
+div.jp-video .jp-toggles {
+	display:table-cell;
+	vertical-align: middle;
+	width: 1px;
+	list-style: none;
+	padding-right:15px;
+}
+.jp-toggles li {
+	margin: 0;
+	float:left;
+}
+div.jp-video a.jp-mute, div.jp-video a.jp-unmute {
+	right: 20px;
+	left: auto;	
+	top: 8px;
+}
+
+/* NO SOLUTION error feedback */
+
+.jp-no-solution {
+	position:absolute;
+	width:390px;
+	margin-left:-202px;
+	left:50%;
+	top: 10px;
+	padding:5px;
+	font-size:.8em;
+	background-color:#eee;
+	border:2px solid #009be3;
+	color:#000;
+	display:none;
+}
+
+.jp-no-solution a {
+	color:#000;
+}
+
+.jp-no-solution span {
+	font-size:1em;
+	display:block;
+	text-align:center;
+	font-weight:bold;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1024px) {
+	div.jp-video-full div.jp-gui {
+		display: block!important;
+		opacity: 1;
+		-moz-opacity: 1;
+		filter:alpha(opacity=100);
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.jp-volume-bar,
+	.jp-shuffle, .jp-shuffle-off,
+	.jp-repeat, .jp-repeat-off{
+		display:none!important;	
+	}
+	div.jp-interface ul.jp-controls {
+		width: 1px;
+	}
+}
+
+.jp-jplayer img{
+	width:100%!important;
+	height:inherit!important;
+}
