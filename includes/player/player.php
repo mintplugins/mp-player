@@ -61,7 +61,7 @@ function mp_player($post_id, $content = 'mp_player'){
 			
 				new jPlayerPlaylist({
 			
-					jPlayer: "#' . $post_id . '_jquery_jplayer",
+					jPlayer: "#' . $post_id . '_mp_player",
 			
 					cssSelectorAncestor: "#' . $post_id . '_jp_container"
 			
@@ -127,56 +127,59 @@ function mp_player($post_id, $content = 'mp_player'){
 		
 					<div class="jp-type-playlist">';
 						
-					   
-						$html_output .= '<div id="' . $post_id . '_jquery_jplayer" class="jp-jplayer" ';
+						$html_output .= '
 						
-						//$html_output .= in_array('m4v', $supplied) ? 'style="display:block;"' : 'style="display:none;"'; <-- this line breaks jplayer on IOS6
-					
-						$html_output .= '></div><div class="jp-gui">
+						<div class="mp-player-video-area">
+							
+							<div class="jp-video-play mp-player-video-play">
 		
-							<div class="jp-video-play">
-		
-								<a href="javascript:;" class="jp-video-play-icon icon-play" tabindex="1"></a>
+								<a href="javascript:;" class="jp-video-play-icon mp-player-video-play-icon icon-play" tabindex="1"></a>
 		
 							</div>
+							
+							<div id="' . $post_id . '_mp_player" class="jp-jplayer mp-player"></div>
+							
+						</div>
+						
+						<div class="jp-gui mp-player-gui">
 		
-							<div class="jp-interface">
+							<div class="jp-interface mp-player-interface">
 		
-								<div class="jp-current-time"></div>
+								<div class="jp-current-time mp-player-current-time"></div>
 		
-								<div class="jp-duration"></div>
+								<div class="jp-duration mp-player-duration"></div>
 		
-								<div class="jp-controls-holder">
+								<div class="jp-controls-holder mp-player-controls-holder">
 		
-									<ul class="jp-controls">
+									<ul class="jp-controls mp-player-controls">
 										<!--previous-->
-										<li><a href="javascript:;" class="jp-previous icon-to-start" tabindex="1"></a></li>
+										<li><a href="javascript:;" class="jp-previous mp-player-previous icon-to-start" tabindex="1"></a></li>
 										<!--play-->
-										<li><a href="javascript:;" class="jp-play icon-play" tabindex="1"></a></li>
+										<li><a href="javascript:;" class="jp-play mp-player-play icon-play" tabindex="1"></a></li>
 										<!--pause-->
-										<li><a href="javascript:;" class="jp-pause icon-pause" tabindex="1"></a></li>
+										<li><a href="javascript:;" class="jp-pause mp-player-pause icon-pause" tabindex="1"></a></li>
 										<!--next-->
-										<li><a href="javascript:;" class="jp-next icon-to-end" tabindex="1"></a></li>
+										<li><a href="javascript:;" class="jp-next mp-player-next icon-to-end" tabindex="1"></a></li>
 										<!--stop-->
-										<li><a href="javascript:;" class="jp-stop icon-stop" tabindex="1"></a></li>
+										<li><a href="javascript:;" class="jp-stop mp-player-stop icon-stop" tabindex="1"></a></li>
 										<!--mute-->
-										<li><a href="javascript:;" class="jp-mute icon-volume-off" tabindex="1" title="mute"></a></li>
+										<li><a href="javascript:;" class="jp-mute mp-player-mute icon-volume-off" tabindex="1" title="mute"></a></li>
 										<!--unmute-->
-										<li><a href="javascript:;" class="jp-unmute icon-volume-up" tabindex="1" title="unmute"></a></li>
+										<li><a href="javascript:;" class="jp-unmute mp-player-unmute icon-volume-up" tabindex="1" title="unmute"></a></li>
 										
 									</ul>
 									
-									<div class="jp-progress">
+									<div class="jp-progress mp-player-progress">
 									
-										<div class="jp-seek-bar">
-											<div class="jp-play-bar"></div>
+										<div class="jp-seek-bar mp-player-seek-bar">
+											<div class="jp-play-bar mp-player-play-bar"></div>
 										</div>
 									</div>
 											
-									<div class="jp-volume-bar">
+									<div class="jp-volume-bar mp-player-volume-bar">
 		
-										<div class="jp-volume-bar-bg">
-											<div class="jp-volume-bar-value"></div>
+										<div class="jp-volume-bar-bg mp-player-volume-bar-bg">
+											<div class="jp-volume-bar-value mp-player-volume-bar-value"></div>
 										</div>
 										
 									</div>';
@@ -184,30 +187,30 @@ function mp_player($post_id, $content = 'mp_player'){
 									//If there is more than 1 track
 									if (is_array($medias) && count($medias) > 1){
 										$html_output .= '
-										<ul class="jp-controls">
+										<ul class="jp-controls jp-secondary-controls mp-player-secondary-controls">
 											<!--shuffle-->
-											<li><a href="javascript:;" class="jp-shuffle icon-shuffle" tabindex="1" title="shuffle"></a></li>
+											<li><a href="javascript:;" class="jp-shuffle mp-player-shuffle icon-shuffle" tabindex="1" title="shuffle"></a></li>
 											<!--shuffle off-->
-											<li><a href="javascript:;" class="jp-shuffle-off icon-shuffle shuffle-off" tabindex="1" title="shuffle off"></a></li>
+											<li><a href="javascript:;" class="jp-shuffle-off mp-player-shuffle-off icon-shuffle shuffle-off" tabindex="1" title="shuffle off"></a></li>
 											<!--repeat-->
-											<li><a href="javascript:;" class="jp-repeat icon-loop" tabindex="1" title="repeat"></a></li>
+											<li><a href="javascript:;" class="jp-repeat mp-player-repeat icon-loop" tabindex="1" title="repeat"></a></li>
 											<!--repeat off-->
-											<li><a href="javascript:;" class="jp-repeat-off icon-loop loop-off" tabindex="1" title="repeat off"></a></li>
+											<li><a href="javascript:;" class="jp-repeat-off mp-player-repeat-off icon-loop loop-off" tabindex="1" title="repeat off"></a></li>
 										</ul>';
 									}
 										
-									$html_output .= '<ul class="jp-toggles">';
+									$html_output .= '<ul class="jp-toggles mp-player-toggles">';
 									if (in_array('m4v', $supplied)){
 										$html_output .= '<!--full screen-->
-										<li><a href="javascript:;" class="jp-full-screen icon-resize-full-alt" tabindex="1" title="full screen" ></a></li>
+										<li><a href="javascript:;" class="jp-full-screen mp-player-full-screen icon-resize-full-alt" tabindex="1" title="full screen" ></a></li>
 										<!--restore screen-->
-										<li><a href="javascript:;" class="jp-restore-screen icon-resize-small" tabindex="1" title="restore screen"></a></li>';
+										<li><a href="javascript:;" class="jp-restore-screen mp-player-restore-screen icon-resize-small" tabindex="1" title="restore screen"></a></li>';
 									} 
 									$html_output .= '</ul>
 		
 								</div>
 		
-								<div class="jp-title">
+								<div class="jp-title mp-player-title">
 		
 									<ul>
 		
@@ -221,7 +224,7 @@ function mp_player($post_id, $content = 'mp_player'){
 		
 						</div>';
 			
-						$html_output .= '<div class="jp-playlist" '; 
+						$html_output .= '<div class="jp-playlist mp-player-playlist" '; 
 						$html_output .= !is_array($medias) || count($medias) == 1 ? 'style="display:none"' : NULL; 
 						$html_output .= '>';
 		
@@ -237,7 +240,7 @@ function mp_player($post_id, $content = 'mp_player'){
 						</div>
 						
                       
-						<div class="jp-no-solution">
+						<div class="jp-no-solution mp-player-no-solution">
 		
 							<span>Update Required</span>
 		
