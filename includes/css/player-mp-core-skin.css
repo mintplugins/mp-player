@@ -148,8 +148,13 @@ a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
 	position:relative;	
 }
 .jp-gui a, .jp-playlist a{
+	display: table;
+	vertical-align: middle;
+	width:100%;
 	color:#DFDFDF;
 	font-size:15px;
+	padding: 10px 0px 10px 10px;
+	text-decoration:none;
 }	
 /* PLAYLIST */
 
@@ -165,7 +170,6 @@ a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
 	display: table;
 	vertical-align: middle;
 	width: 100%;
-	padding: 10px 0px 10px 10px;
 	box-sizing: border-box;
 }
 .jp-playlist ul li:hover{
