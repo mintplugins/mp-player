@@ -1,4 +1,28 @@
 <?php
+function enqueue_these_scripts(){
+	
+	if ( is_archive() ){
+		//Filter or set default skin location for jplayer 
+		$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
+		
+		//Enqueue skin for jplayer
+		wp_enqueue_style('mp_player_mp_player_skin', $jplayer_skin_location);
+		
+		//Filter or set default skin for jplayer 
+		$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', $first_output) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
+		
+		//Icon font for jplayer 
+		wp_enqueue_style('mp_player_mp_player_icon_font', $jplayer_font_location);
+		
+		//jplayer
+		wp_enqueue_script('mp_player', plugins_url('js/jplayer/jquery.jplayer.min.js', dirname(__FILE__)),  array( 'jquery') );
+		
+		//jplayer playlist addon
+		wp_enqueue_script('mp_player_playlist', plugins_url('js/jplayer/jplayer.playlist.min.js', dirname(__FILE__)),  array( 'jquery', 'mp_player') );
+	}
+		
+}
+add_action('wp_enqueue_scripts', 'enqueue_these_scripts');
 /**
  * Jquery for new player
  */
@@ -103,6 +127,7 @@ function mp_player($post_id, $content = 'mp_player'){
 						addTime: 0,
 						removeTime: 0,
 						shuffleTime: 0,
+						autoPlay: 1,
 					},
 					swfPath: "' . plugins_url( 'player', dirname(__FILE__)) . '",
 					wmode: "window",
