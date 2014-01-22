@@ -26,7 +26,7 @@ add_action('wp_enqueue_scripts', 'enqueue_these_scripts');
 /**
  * Jquery for new player
  */
-function mp_player($post_id, $content = 'mp_player'){
+function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 	
 	//Filter or set default skin location for jplayer 
 	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
@@ -118,16 +118,27 @@ function mp_player($post_id, $content = 'mp_player'){
 						}
 					$html_output .= '},';
 				}
-						
 				
+				//Set defaults for player options if none set
+				$player_options_defaults = array(
+					'displayTime' => 0,
+					'addTime' => 0,
+					'removeTime' => 0,
+					'shuffleTime' => 0,
+					'autoPlay' => 0,
+				);
+			
+				//Get and parse player options args
+				$player_options = wp_parse_args( $player_options, $player_options_defaults );
 			
 				$html_output .= '], {
-					playlistOptions: {
-						displayTime: 0,
-						addTime: 0,
-						removeTime: 0,
-						shuffleTime: 0,
-						autoPlay: 1,
+					playlistOptions: {';
+					
+					foreach( $player_options as $key => $player_option ){
+						$html_output .= $key . ':' . $player_option . ',';
+					}
+				
+				$html_output .= '
 					},
 					swfPath: "' . plugins_url( 'player', dirname(__FILE__)) . '",
 					wmode: "window",
