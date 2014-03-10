@@ -108,6 +108,9 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 							 */
 							$html_output .= !empty($media_item) ? $media_key . ':"' . $media_item . '"' : NULL;
 							
+							//To allow the media poster for mp3s we send m4v with mp3s - jplayer works for some reason that way
+							$html_output .= $media_key == "mp3" ?  ', m4v:"1"' : NULL;
+							
 							//Add this mediakey to the supplied array
 							if (!in_array($media_key, $supplied) && !empty($media_item)){
 								array_push($supplied, $media_key);
@@ -116,6 +119,7 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 							//Increment the media_key_counter
 							$media_key_counter = $media_key_counter + 1;
 						}
+				
 					$html_output .= '},';
 				}
 				
@@ -146,9 +150,15 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 					
 					$counter = 1;
 					foreach ($supplied as $supply){
+							//Should we show the comma?
 							$html_output .= $counter > 1 ? ',' : NULL;
+							//Increment the counter
 							$counter = $supply != "title" ? $counter+1 : $counter;
+							//add this type to the html output
 							$html_output .= $supply != "title" ? $supply : NULL;
+							//To allow the media poster for mp3s we send m4v with mp3s - jplayer works for some reason that way
+							$html_output .= $supply == "mp3" ? ', m4v' : NULL;
+							
 					}
 					$html_output .= '"';
 		

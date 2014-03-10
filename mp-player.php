@@ -3,7 +3,7 @@
 Plugin Name: MP Player
 Plugin URI: http://moveplugins.com
 Description: Simple function or shortcode to display skinnable Media Player (Audio/Video)
-Version: beta1.0.0.2
+Version: beta1.0.0.3
 Author: Move Plugins
 Author URI: http://moveplugins.com
 Text Domain: mp_player
