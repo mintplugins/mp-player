@@ -81,15 +81,11 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 		
 			//<![CDATA[
 			
+			var mp_player_' . $post_id . ';
+			
 			jQuery(document).ready(function(){
 			
-				new jPlayerPlaylist({
-			
-					jPlayer: "#' . $post_id . '_mp_player",
-			
-					cssSelectorAncestor: "#' . $post_id . '_jp_container"
-			
-				}, [';
+				mp_player_' . $post_id . ' = [';
 				
 				foreach ($medias as $media){
 					$html_output .= '{';
@@ -123,6 +119,20 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 					$html_output .= '},';
 				}
 				
+				$html_output .= '];';
+				
+				$html_output .= '
+				
+				new jPlayerPlaylist({
+			
+					jPlayer: "#' . $post_id . '_mp_player",
+			
+					cssSelectorAncestor: "#' . $post_id . '_jp_container"
+			
+				}, mp_player_' . $post_id . '';
+				
+				
+				
 				//Set defaults for player options if none set
 				$player_options_defaults = array(
 					'displayTime' => 0,
@@ -135,7 +145,7 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 				//Get and parse player options args
 				$player_options = wp_parse_args( $player_options, $player_options_defaults );
 			
-				$html_output .= '], {
+				$html_output .= ', {
 					playlistOptions: {';
 					
 					foreach( $player_options as $key => $player_option ){
