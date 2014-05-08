@@ -1,7 +1,7 @@
 <?php
 function enqueue_these_scripts(){
 	
-	if ( is_archive() ){
+	if ( is_archive() || is_search() ){
 		//Filter or set default skin location for jplayer 
 		$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
 		
@@ -47,13 +47,13 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 	wp_enqueue_script('mp_player_playlist', plugins_url('js/jplayer/jplayer.playlist.min.js', dirname(__FILE__)),  array( 'jquery', 'mp_player') );
 	
 	//Set/Call the $post_id global
-	global $previous_post_id;
+	global $mp_player_previous_post_id;
 	
 	//Set blank html output
 	$html_output = NULL;
 	
-	//Make sure we haven't created a jplayer with this id on this page already
-	if ($post_id != $previous_post_id){
+	//Make sure we haven't created a player with this id on this page already
+	if ($post_id != $mp_player_previous_post_id){
 		
 		//If the $content variable isn't an array - which means that the array is attached to this post in a post meta
 		if (!is_array($content)){
@@ -68,117 +68,12 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 		//there is a 99.99% chance that this array is either set up improperly,
 		//or there are no songs that have been added - so only create the player if there is a title for the first song.
 		if (!empty($medias[0]['title'])){
+									
+			//If this player should use jplayer
+			$jplayer_output_and_supplied = mp_jplayer_js_output( $post_id, $medias, $player_options );
+			$html_output .= $jplayer_output_and_supplied[0];
 			
-			//Set supplied array to empty array
-			$supplied = array();
-			
-			/**
-			 * Output Jquery and HTML for new player
-			 */
-			 
-			
-			$html_output = '<script type="text/javascript">
-		
-			//<![CDATA[
-			
-			var mp_player_' . $post_id . ';
-			
-			jQuery(document).ready(function(){
-			
-				mp_player_' . $post_id . ' = [';
-				
-				foreach ($medias as $media){
-					$html_output .= '{';
-						
-						$media_key_counter = 0;
-						
-						foreach ($media as $media_key => $media_item){
-							
-							//If this is not the first media key, finish the previous loop with a comma
-							$html_output .= !empty($media_item) && $media_key_counter > 0 ? ',' : NULL;
-							
-							/**
-							 * When creating your metabox
-							 * Media keys (field_ids) should be named after what they represent
-							 * EG: title, poster, artist, m4v, ogv, webmv
-							 */
-							$html_output .= !empty($media_item) ? $media_key . ':"' . $media_item . '"' : NULL;
-							
-							//To allow the media poster for mp3s we send m4v with mp3s - jplayer works for some reason that way
-							$html_output .= $media_key == "mp3" ?  ', m4v:"1"' : NULL;
-							
-							//Add this mediakey to the supplied array
-							if (!in_array($media_key, $supplied) && !empty($media_item)){
-								array_push($supplied, $media_key);
-							}
-							
-							//Increment the media_key_counter
-							$media_key_counter = $media_key_counter + 1;
-						}
-				
-					$html_output .= '},';
-				}
-				
-				$html_output .= '];';
-				
-				$html_output .= '
-				
-				new jPlayerPlaylist({
-			
-					jPlayer: "#' . $post_id . '_mp_player",
-			
-					cssSelectorAncestor: "#' . $post_id . '_jp_container"
-			
-				}, mp_player_' . $post_id . '';
-				
-				
-				
-				//Set defaults for player options if none set
-				$player_options_defaults = array(
-					'displayTime' => 0,
-					'addTime' => 0,
-					'removeTime' => 0,
-					'shuffleTime' => 0,
-					'autoPlay' => 0,
-				);
-			
-				//Get and parse player options args
-				$player_options = wp_parse_args( $player_options, $player_options_defaults );
-			
-				$html_output .= ', {
-					playlistOptions: {';
-					
-					foreach( $player_options as $key => $player_option ){
-						$html_output .= $key . ':' . $player_option . ',';
-					}
-				
-				$html_output .= '
-					},
-					swfPath: "' . plugins_url( 'player', dirname(__FILE__)) . '",
-					wmode: "window",
-					supplied: "';
-					
-					$counter = 1;
-					foreach ($supplied as $supply){
-							//Should we show the comma?
-							$html_output .= $counter > 1 ? ',' : NULL;
-							//Increment the counter
-							$counter = $supply != "title" ? $counter+1 : $counter;
-							//add this type to the html output
-							$html_output .= $supply != "title" ? $supply : NULL;
-							//To allow the media poster for mp3s we send m4v with mp3s - jplayer works for some reason that way
-							$html_output .= $supply == "mp3" ? ', m4v' : NULL;
-							
-					}
-					$html_output .= '"';
-		
-				$html_output .= '});
-			
-			});
-			
-			//]]>
-			
-			</script>
+			$html_output .= '
 			<div id="' . $post_id . '_jp_container" class="mp-player-container jp-video jp-video-270p">
 		
 					<div class="jp-type-playlist">';
@@ -256,7 +151,7 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 									}
 										
 									$html_output .= '<ul class="jp-toggles mp-player-toggles">';
-									if (in_array('m4v', $supplied)){
+									if (in_array('m4v', $jplayer_output_and_supplied[1] )){
 										$html_output .= '<!--full screen-->
 										<li><a href="javascript:;" class="jp-full-screen mp-player-full-screen icon-resize-full-alt" tabindex="1" title="full screen" ></a></li>
 										<!--restore screen-->
@@ -309,7 +204,7 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 				</div>';
 			
 			//Set the global variable for the post id to the current one
-			$previous_post_id = $post_id;
+			$mp_player_previous_post_id = $post_id;
 		}
 	}
 	

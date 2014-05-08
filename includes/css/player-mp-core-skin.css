@@ -385,3 +385,16 @@ div.jp-video a.jp-mute, div.jp-video a.jp-unmute {
 		width: 1px;
 	}
 }
+
+#mp-waveform {
+    position: relative;
+	width:100%;
+}
+#mp-waveform-progress-bar {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+    width: 100%;
+}
