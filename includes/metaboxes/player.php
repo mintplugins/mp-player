@@ -2,13 +2,13 @@
 /**
  * This file contains the MP_Player_Cpt_Metabox class
  *
- * @link http://moveplugins.com/doc/mp-player-class/
+ * @link http://mintplugins.com/doc/mp-player-class/
  * @since 1.0.0
  *
  * @package    MP Core
  * @subpackage Classes
  *
- * @copyright  Copyright (c) 2013, Move Plugins
+ * @copyright  Copyright (c) 2014, Mint Plugins
  * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author     Philip Johnston
  */
@@ -17,7 +17,7 @@
  * This class adds a pre-created 'mp_player' metabox to a passed-in post type
  *
  * @author     Philip Johnston
- * @link       http://moveplugins.com/doc/metabox-class/
+ * @link       http://mintplugins.com/doc/metabox-class/
  * @since      1.0.0
  * @usage      new MP_Player_Cpt_Metabox( 'cpt_slug' );
  * @return     void
@@ -32,7 +32,7 @@ if (!class_exists('MP_Player_Cpt_Metabox')){
 		 *
 		 * @access   public
 		 * @since    1.0.0
-		 * @link     http://moveplugins.com/doc/metabox-class/
+		 * @link     http://mintplugins.com/doc/metabox-class/
 		 * @author   Philip Johnston
 		 * @see      MP_Player_Cpt_Metabox::mp_core_add_metabox()
 		 * @see      MP_Player_Cpt_Metabox::mp_core_save_data()

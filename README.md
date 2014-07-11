@@ -1,6 +1,6 @@
 === MP JPlayer ===
 Contributors: johnstonphilip
-Donate link: http://moveplugins.com/
+Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.0.1
 Tested up to: 3.5
@@ -18,12 +18,12 @@ This plugin allows you to create MP3/Video players using the awesome JPlayer. It
 == Installation ==
 
 Full instructions and FAQ available at:
-http://moveplugins.com/doc/mp-jplayer/
+http://mintplugins.com/doc/mp-jplayer/
 
 == Frequently Asked Questions ==
 
 Full instructions and FAQ available at:
-http://moveplugins.com/doc/mp-jplayer/
+http://mintplugins.com/doc/mp-jplayer/
 
 == Screenshots ==
 

@@ -4,14 +4,14 @@
 *
 * Skin Name: SwiftPSD v2
 *
-* Copyright (c) 2012 SwiftPSD / Ed Cousins
+* Copyright (c) 2014 SwiftPSD / Ed Cousins
 * Dual licensed under the MIT and GPL licenses.
 *  - http://www.opensource.org/licenses/mit-license.php
 *  - http://www.gnu.org/copyleft/gpl.html
 *
 * Author: Ed Cousins for SwiftPSD.com
 * Skin Version: 1.0 (jPlayer 2.1.0)
-* Date: 5th January 2012
+* Date: 5th January 2014
 */
 
 /* MAIN INTERFACE */
@@ -22,7 +22,6 @@
 div.jp-interface {
  	width: 100%;
  	height: auto;
- 	position: relative;
 	background-color:#000000;
 	overflow:hidden;
 }
@@ -95,10 +94,13 @@ div.jp-interface ul.jp-controls {
 	vertical-align:middle;
 	width: 1px;
 	list-style: none;
-	padding: 0px 5px 0px 15px;
+	padding: 0px 5px 0px 5px;
 	margin: 0;
 	height: auto;
 	overflow: hidden;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 div.jp-interface ul.jp-secondary-controls {
 	padding: 0px 5px 0px 0px;	
@@ -108,9 +110,6 @@ div.jp-interface ul.jp-controls li {
 	vertical-align:middle;
 	margin-bottom: 0;
 }
-div.jp-interface ul.jp-controls li a{
-	padding-right:10px;
-}
 .jp-repeat, .jp-repeat-off{
 	margin-top: -2px;	
 }
@@ -119,6 +118,11 @@ div.jp-interface ul.jp-controls a, div.jp-interface ul.jp-toggles a {
 	overflow: hidden;
 	text-decoration: none;
 	font-size: 18px;
+	
+	padding:0px 5px 0px 5px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 div.jp-video-play{
 	font-size:30px;
@@ -136,8 +140,6 @@ div.jp-video-play a:before{
 	text-decoration:none;
 	color:#878787;	
 }
-a.jp-play, a.jp-pause{	
-}
 a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
 	display:none!important;
 }
@@ -153,8 +155,9 @@ a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
 	width:100%;
 	color:#DFDFDF;
 	font-size:15px;
-	padding: 10px 0px 10px 10px;
 	text-decoration:none;
+	padding:10px;
+	text-align:left;
 }	
 /* PLAYLIST */
 
@@ -170,10 +173,16 @@ a.jp-stop, a.jp-previous, a.jp-next, a.jp-mute, a.jp-unmute{
 	display: table;
 	vertical-align: middle;
 	width: 100%;
-	box-sizing: border-box;
+	
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
 }
-.jp-playlist ul li:hover{
+.jp-playlist ul li:hover,
+a.jp-playlist-current{
 	background:	#878787;
+	
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
 }
 .jp-free-media{
 	float:right;
@@ -228,7 +237,10 @@ div.jp-volume-bar {
    	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	padding-right:15px;
+	padding:0px 5px 0px 5px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */;
 }
 .jp-volume-bar-bg{
 	background: #333;
@@ -249,11 +261,14 @@ div.jp-volume-bar-value {
 div.mp-player{
 	text-align: center;	
 }
+.mp-player-container .mp-player img{
+	float:left;	
+}
 .mp-player-container .mp-player audio,
 .mp-player-container .mp-player video,
 .mp-player-container .mp-player img{
 	display:block;
-	margin:0px;	
+	margin:0px!important;	
 }
 .mp-player-video-area{
 	position:relative;	
@@ -298,11 +313,18 @@ div.jp-video div.jp-interface {
 	display:table;
 	width: 100%;
 	margin: 0;
+	padding:0px 5px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 div.jp-video .jp-progress {
 	display: table-cell;
 	vertical-align: middle;
-	padding-right: 15px;
+	padding: 0px 5px 0px 5px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 div.jp-video .jp-progress .jp-progress-placeholder{
 	width: 100%;
@@ -321,7 +343,7 @@ div.jp-video .jp-toggles {
 	vertical-align: middle;
 	width: 1px;
 	list-style: none;
-	padding-right:15px;
+	display:none;
 }
 .jp-toggles li {
 	margin: 0;

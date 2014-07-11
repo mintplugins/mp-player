@@ -4,7 +4,7 @@
  * This function returns the js for a jplayer
  *
  * @since    1.0.0
- * @link     http://moveplugins.com/doc/
+ * @link     http://mintplugins.com/doc/
  * @see      function_name()
  * @param  	 string $post_id The ID of the post where the jplayer options have been filled out
  * @param  	 array $medias  An array containing the info about the tracks formatted like this:
@@ -58,7 +58,14 @@ function mp_jplayer_js_output( $post_id, $medias, $player_options = array() ){
 							 * Media keys (field_ids) should be named after what they represent
 							 * EG: title, poster, artist, m4v, ogv, webmv
 							 */
-							$html_output .= !empty($media_item) ? $media_key . ':"' . $media_item . '"' : NULL;
+							
+							//Allow the poster to be filtered 						
+							if ( $media_key == 'poster' ){
+								$html_output .= $media_key . ':"' . apply_filters( 'mp_player_track_poster', $media_item, $post_id ) . '"';
+							}
+							else{
+								$html_output .= !empty($media_item) ? $media_key . ':"' . $media_item . '"' : NULL;
+							}
 							
 							//To allow the media poster for mp3s we send m4v with mp3s - jplayer works for some reason that way
 							$html_output .= $media_key == "mp3" ?  ', m4v:"1"' : NULL;
@@ -110,7 +117,7 @@ function mp_jplayer_js_output( $post_id, $medias, $player_options = array() ){
 				
 				$html_output .= '
 					},
-					swfPath: "' . plugins_url( 'player', dirname(__FILE__)) . '",
+					swfPath: "' . plugins_url( '', dirname(__FILE__)) . '",
 					wmode: "window",
 					supplied: "';
 					

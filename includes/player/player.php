@@ -1,30 +1,30 @@
 <?php
 function enqueue_these_scripts(){
+
+	//Filter or set default skin location for jplayer 
+	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
 	
-	if ( is_archive() || is_search() ){
-		//Filter or set default skin location for jplayer 
-		$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
-		
-		//Enqueue skin for jplayer
-		wp_enqueue_style('mp_player_mp_player_skin', $jplayer_skin_location);
-		
-		//Filter or set default skin for jplayer 
-		$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', $first_output) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
-		
-		//Icon font for jplayer 
-		wp_enqueue_style('mp_player_mp_player_icon_font', $jplayer_font_location);
-		
-		//jplayer
-		wp_enqueue_script('mp_player', plugins_url('js/jplayer/jquery.jplayer.min.js', dirname(__FILE__)),  array( 'jquery') );
-		
-		//jplayer playlist addon
-		wp_enqueue_script('mp_player_playlist', plugins_url('js/jplayer/jplayer.playlist.min.js', dirname(__FILE__)),  array( 'jquery', 'mp_player') );
-	}
-		
+	//Enqueue skin for jplayer
+	wp_enqueue_style('mp_player_mp_player_skin', $jplayer_skin_location);
+	
+	//Filter or set default skin for jplayer 
+	$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', $first_output) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
+	
+	//Icon font for jplayer 
+	wp_enqueue_style('mp_player_mp_player_icon_font', $jplayer_font_location);
+	
+	//jplayer
+	wp_enqueue_script('mp_player', plugins_url('js/jplayer/jquery.jplayer.min.js', dirname(__FILE__)),  array( 'jquery') );
+	
+	//jplayer playlist addon
+	wp_enqueue_script('mp_player_playlist', plugins_url('js/jplayer/jplayer.playlist.min.js', dirname(__FILE__)),  array( 'jquery', 'mp_player') );
+
 }
 add_action('wp_enqueue_scripts', 'enqueue_these_scripts');
 /**
  * Jquery for new player
+ *
+ * Post ID must not contain an underscore. Can be any string (not necessarily a post id). Also must be unique.
  */
 function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 	
@@ -47,13 +47,16 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 	wp_enqueue_script('mp_player_playlist', plugins_url('js/jplayer/jplayer.playlist.min.js', dirname(__FILE__)),  array( 'jquery', 'mp_player') );
 	
 	//Set/Call the $post_id global
-	global $mp_player_previous_post_id;
+	global $mp_player_previous_player_ids;
+	
+	//Make sure the global is an array (if this is the first player on the page
+	$mp_player_previous_player_ids = !is_array( $mp_player_previous_player_ids ) ? array() : $mp_player_previous_player_ids;
 	
 	//Set blank html output
 	$html_output = NULL;
 	
 	//Make sure we haven't created a player with this id on this page already
-	if ($post_id != $mp_player_previous_post_id){
+	if ( !in_array($post_id, $mp_player_previous_player_ids ) ){
 		
 		//If the $content variable isn't an array - which means that the array is attached to this post in a post meta
 		if (!is_array($content)){
@@ -204,7 +207,7 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 				</div>';
 			
 			//Set the global variable for the post id to the current one
-			$mp_player_previous_post_id = $post_id;
+			//array_push( $mp_player_previous_player_ids, $post_id );
 		}
 	}
 	
