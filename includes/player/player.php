@@ -2,13 +2,13 @@
 function enqueue_these_scripts(){
 
 	//Filter or set default skin location for jplayer 
-	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
+	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', NULL) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
 	
 	//Enqueue skin for jplayer
 	wp_enqueue_style('mp_player_mp_player_skin', $jplayer_skin_location);
 	
 	//Filter or set default skin for jplayer 
-	$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', $first_output) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
+	$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', NULL) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
 	
 	//Icon font for jplayer 
 	wp_enqueue_style('mp_player_mp_player_icon_font', $jplayer_font_location);
@@ -29,13 +29,13 @@ add_action('wp_enqueue_scripts', 'enqueue_these_scripts');
 function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 	
 	//Filter or set default skin location for jplayer 
-	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', $first_output) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
+	$jplayer_skin_location = has_filter('mp_player_skin_location') ? apply_filters( 'mp_player_skin_location', NULL) : plugins_url('css/player-mp-core-skin.css', dirname(__FILE__));
 	
 	//Enqueue skin for jplayer
 	wp_enqueue_style('mp_player_mp_player_skin', $jplayer_skin_location);
 	
 	//Filter or set default skin for jplayer 
-	$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', $first_output) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
+	$jplayer_font_location = has_filter('mp_player_font_css_location') ? apply_filters( 'mp_player_font_css_location', NULL) : plugins_url('css/player-mp-core-icon-font.css', dirname(__FILE__));
 	
 	//Icon font for jplayer 
 	wp_enqueue_style('mp_player_mp_player_icon_font', $jplayer_font_location);
@@ -99,10 +99,6 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 		
 							<div class="jp-interface mp-player-interface">
 		
-								<div class="jp-current-time mp-player-current-time"></div>
-		
-								<div class="jp-duration mp-player-duration"></div>
-		
 								<div class="jp-controls-holder mp-player-controls-holder">
 		
 									<ul class="jp-controls mp-player-controls">
@@ -122,6 +118,10 @@ function mp_player($post_id, $content = 'mp_player', $player_options = NULL){
 										<li><a href="javascript:;" class="jp-unmute mp-player-unmute icon-volume-up" tabindex="1" title="unmute"></a></li>
 										
 									</ul>
+									
+									<div class="jp-current-time mp-player-current-time"></div>
+		
+									<div class="jp-duration mp-player-duration"></div>
 									
 									<div class="jp-progress mp-player-progress">
 									

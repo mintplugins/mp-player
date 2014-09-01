@@ -1,4 +1,4 @@
-=== MP JPlayer ===
+ === MP JPlayer ===
 Contributors: johnstonphilip
 Donate link: http://mintplugins.com/
 Tags: message bar, header
@@ -32,23 +32,6 @@ http://mintplugins.com/doc/mp-jplayer/
 2. Sample JPlayer
 
 == Changelog ==
-
-= 1.0.0.5: September 27, 2014 =
-* Change: Plugin Checker/Installer/Updater class and function updates. 
-* Change: API URL change to repo.mintplugins.com -> mintplugins.com.
-
-= 1.0.0.4 = July 28, 2014
-* Added check for blank media items. Was putting extra comma's between items when blank
-
-= 1.0.0.3 = July 27, 2014
-* Took out display:none for video - it was breaking it on IOS6
-* Added counter for media keys so that extra comments are not inserted at the end of a line with nothing
-
-= 1.0.0.2 = July 26, 2014
-* plugin-checker/plugin-installer classes change
-
-= 1.0.0.1 = May 17, 2014
-* Changed updates and plugin check from mintplugins.com to repo.mintplugins.com
 
 = 1.0.0.0 =
 * Original release
