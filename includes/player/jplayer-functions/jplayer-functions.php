@@ -61,7 +61,9 @@ function mp_jplayer_js_output( $post_id, $medias, $player_options = array() ){
 							
 							//Allow the poster to be filtered 						
 							if ( $media_key == 'poster' ){
-								$html_output .= $media_key . ':"' . apply_filters( 'mp_player_track_poster', $media_item, $post_id ) . '"';
+								if ( !empty($media_item) ){
+									$html_output .= $media_key . ':"' . apply_filters( 'mp_player_track_poster', $media_item, $post_id ) . '"';
+								}
 							}
 							else{
 								$html_output .= !empty($media_item) ? $media_key . ':"' . $media_item . '"' : NULL;

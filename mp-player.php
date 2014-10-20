@@ -3,7 +3,7 @@
 Plugin Name: MP Player
 Plugin URI: http://mintplugins.com
 Description: Simple function or shortcode to display skinnable Media Player (Audio/Video)
-Version: beta1.0.0.7
+Version: beta1.0.0.8
 Author: Mint Plugins
 Author URI: http://mintplugins.com
 Text Domain: mp_player

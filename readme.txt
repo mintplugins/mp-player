@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.0.1
 Tested up to: 3.5
-Stable tag: 1.0.0.4
+Stable tag: beta1.0.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,10 @@ http://mintplugins.com/doc/mp-jplayer/
 2. Sample JPlayer
 
 == Changelog ==
+
+= beta1.0.0.8 = October 20, 2014
+*If there isn’t a poster, it doesn’t output the code for one. 
+*Removed height:inherit from the js for player
 
 = 1.0.0.0 =
 * Original release
